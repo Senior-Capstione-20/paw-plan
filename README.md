@@ -16,4 +16,4 @@ TODOs:
 - [ ] Create Profile page
 - [ ] Create Settings page
 - [ ] Create About page
-- [ ] 
+- [ ] Discuss how to implement different pages
