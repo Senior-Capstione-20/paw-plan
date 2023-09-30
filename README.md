@@ -10,7 +10,7 @@ TODOs:
 - [ ] Discuss use of React
 - [ ] Discuss different pages
 - [ ] Create Landing page @bradyhendu
-- [ ] Create Login page
+- [ ] Create Login page @Chelsea Mensah 
 - [ ] Create Register page
 - [ ] Create Calendar page
 - [ ] Create Profile page
