@@ -222,5 +222,141 @@ code {
   color: #475569;
   font-family: Roboto;
 }
-
 /* Footer End */
+
+/* Planning */
+.dog-hike {
+  position: relative;
+  width: 651px;
+  height: 568px;
+  object-fit: cover;
+  margin-left: 5%;
+}
+.caption {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: 3px;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+.secondary-headline {
+  align-self: stretch;
+  position: relative;
+  font-size: 56px;
+  line-height: 110%;
+  font-weight: 800;
+  color: #fff;
+}
+.top {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  color: #a78bfa;
+}
+.paragraph {
+  align-self: stretch;
+  position: relative;
+  font-size: 18px;
+  line-height: 160%;
+}
+.plan-button-text {
+  position: relative;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+.plan-text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 24px;
+}
+.plan-button {
+  border-radius: 50px;
+  background-color: #7c3aed;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(0, 0, 0, 0.07);
+  border: 2px solid #7c3aed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+}
+.plan-buttons-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 24px;
+}
+.section-text {
+  flex: 1;
+  background-color: #4c1d95;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 80px;
+  gap: 32px;
+}
+.plan-row {
+  background-color: #fff;
+  width: 1440px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.three-dogs {
+  position: relative;
+  width: 473px;
+  height: 210px;
+  object-fit: cover;
+  margin-left: 3%;
+}
+.dog-vet {
+  position: relative;
+  width: 202px;
+  height: 210px;
+  object-fit: cover;
+}
+.dog-park {
+  position: relative;
+  width: 514px;
+  height: 210px;
+  object-fit: cover;
+}
+.dog-house {
+  position: relative;
+  width: 222px;
+  height: 210px;
+  object-fit: cover;
+}
+.planning-row1 {
+  width: 1334px;
+  height: 210px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.planning {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: left;
+  font-size: 20px;
+  color: #fff;
+  font-family: Roboto;
+}
+
+/* Planning End */
