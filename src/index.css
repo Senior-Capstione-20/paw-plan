@@ -200,3 +200,27 @@ code {
   font-family: Roboto;
 }
 /*Hero End */
+
+/* Footer */
+.companyname-202x {
+  flex: 1;
+  position: relative;
+  line-height: 140%;
+}
+.bottom {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 0px;
+  box-sizing: border-box;
+  gap: 48px;
+  text-align: left;
+  font-size: 16px;
+  color: #475569;
+  font-family: Roboto;
+}
+
+/* Footer End */
