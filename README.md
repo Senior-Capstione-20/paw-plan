@@ -9,7 +9,7 @@ TODOs:
 - [ ] Discuss use of Tailwind CSS
 - [X] Discuss use of React
 - [X] Discuss different pages
-- [ ] Create Landing page @bradyhendu
+- [X] Create Landing page @bradyhendu
 - [ ] Create Login page @Chelzvea 
 - [ ] Create Register page
 - [ ] Create Calendar page
@@ -17,4 +17,6 @@ TODOs:
 - [ ] Create Settings page
 - [ ] Create About page
 - [ ] Discuss how to implement different pages
-- [ ] Change <div> in navbar to <a> once different pages are created - @bradyhendu
+- [ ] Change div in navbar to a once different pages are created - @bradyhendu
+- [ ] Update CSS names to be individualized - @bradyhendu
+- [ ] Potentially put different page components in separate file - @bradyhendu
