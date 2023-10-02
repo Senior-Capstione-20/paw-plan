@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+a{
+  text-decoration: none;
+}
+
 /* Navbar */
 .navbar-child {
   position: absolute;
@@ -26,6 +30,8 @@ code {
   position: relative;
   line-height: 110%;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-decoration: none;
 }
 .menu-item {
   align-self: stretch;
@@ -54,11 +60,13 @@ code {
   justify-content: flex-start;
   gap: 38px;
 }
-.button-text {
+.nav-link {
   position: relative;
   letter-spacing: 0.5px;
   line-height: 24px;
   font-weight: 500;
+  color: #fff;
+  text-decoration: none;
 }
 .text-container {
   display: flex;
@@ -134,7 +142,7 @@ code {
 }
 .hero-button-text {
   position: relative;
-  letter-spacing: 0.5px;
+  letter-spacing: .5px;
   line-height: 24px;
 }
 .hero-text-container {
@@ -143,13 +151,6 @@ code {
   align-items: center;
   justify-content: center;
   padding: 0px 24px;
-}
-.icon-jam-icons-outline-l {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  overflow: hidden;
-  flex-shrink: 0;
 }
 .hero-button {
   border-radius: 50px;
