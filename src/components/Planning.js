@@ -11,7 +11,7 @@ const Planning = () => {
     		<div class="plan-row">
       			<img class="dog-hike" alt="" src={Doghike} />
       			
-      			<div class="section-text">
+      			<div class="planning-section">
         				<div class="top">
           					<b class="caption">Planning</b>
           					<div class="secondary-headline">Easily make your schedule around your dog</div>
