@@ -10,12 +10,13 @@ TODOs:
 - [X] Discuss different pages
 - [X] Create Landing page @bradyhendu
 - [ ] Create Login page @Chelzvea 
-- [ ] Create Register page
-- [ ] Create Calendar page
-- [ ] Create Profile page
-- [ ] Create Settings page
+- [ ] Create Register page 
+- [ ] Create Calendar / Dashboard page - @smetellus01
+- [ ] Create Profile page 
+- [ ] Create Settings page 
 - [ ] Create About page - @bradyhendu
 - [ ] Discuss how to implement different pages
 - [ ] Change div in navbar to a once different pages are created - @bradyhendu
 - [ ] Update CSS names to be individualized - @bradyhendu
 - [ ] Potentially put different page components in separate file - @bradyhendu
+- [ ] Implement a user database - @nevinramjitsingh
