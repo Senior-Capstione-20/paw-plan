@@ -6,7 +6,7 @@ const Hero = () => {
         <div class="hero">
             <div class="hero-text">
                 <div class="top">
-                        <div class="main-headline">Doggy plans all in one place</div>
+                        <div class="hero-main-headline">Doggy Plans All in One Place</div>
                 </div>
                 <div class="paragraph">
                         <p class="keep-track-of">Keep track of your dogs schedule including walks, vet visits, play dates, and so much more.</p>

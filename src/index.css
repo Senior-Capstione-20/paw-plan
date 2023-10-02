@@ -109,11 +109,12 @@ code {
 /* Navbar End */
 
 /* Hero */
-.main-headline {
+.hero-main-headline {
   align-self: stretch;
   position: relative;
   line-height: 110%;
   font-weight: 800;
+  color:#4c1d95;
 }
 .top {
   align-self: stretch;
