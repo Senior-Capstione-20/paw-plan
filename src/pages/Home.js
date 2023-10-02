@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Hero from "./Hero";
-import Footer from "./Footer";
-import Planning from "./Planning";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
+import Planning from "../components/Planning";
 
 const Home = () => {
     return (
