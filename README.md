@@ -9,9 +9,10 @@ TODOs:
 - [X] Discuss use of React
 - [X] Discuss different pages
 - [X] Create Landing page @bradyhendu
-- [ ] Create Login page @Chelzvea 
-- [ ] Create Register page 
-- [ ] Create Calendar / Dashboard page - @smetellus01
+- [ ] Create Login / Register page - @RyanF02
+- [ ] Create Calendar Component - @smetellus01
+- [ ] Create Dashboard - @Chelzvea
+- [ ] Create Pet Registration - @Chelzvea
 - [ ] Create Profile page 
 - [ ] Create Settings page 
 - [ ] Create About page - @bradyhendu
