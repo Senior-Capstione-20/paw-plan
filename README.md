@@ -10,10 +10,10 @@ TODOs:
 - [X] Discuss use of React
 - [X] Discuss different pages
 - [X] Create Landing page @bradyhendu
-- [ ] Create Login page @Chelzvea 
-- [ ] Create Register page
+- [ ] Create Login page/signup 
+- [ ] Create pet Register page @chelsea Mensah
 - [ ] Create Calendar page
-- [ ] Create Profile page
+- [ ] Create Profile page @Chelsea Mensah
 - [ ] Create Settings page
 - [ ] Create About page
 - [ ] Discuss how to implement different pages
