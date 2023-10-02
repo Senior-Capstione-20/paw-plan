@@ -15,7 +15,7 @@ TODOs:
 - [ ] Create Calendar page
 - [ ] Create Profile page
 - [ ] Create Settings page
-- [ ] Create About page
+- [ ] Create About page - @bradyhendu
 - [ ] Discuss how to implement different pages
 - [ ] Change div in navbar to a once different pages are created - @bradyhendu
 - [ ] Update CSS names to be individualized - @bradyhendu
