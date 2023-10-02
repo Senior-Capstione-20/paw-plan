@@ -13,11 +13,8 @@ const Navbar = () => {
                         <div class="menu-item">
                             <div class="button-text">About</div>
                         </div>
-                    <div class="menu-item">
-                        <div class="button-text">Contact</div>
                     </div>
                 </div>
-            </div>
             <div class="buttons-group1">
                 <div class="button">
                     <div class="text-container">
