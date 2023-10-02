@@ -1,4 +1,7 @@
 import React from "react";
+import Walker from '../images/dogwalk.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 const Hero = () => {
     return (
         <div class="hero">
@@ -11,16 +14,14 @@ const Hero = () => {
                         <p class="keep-track-of">To get started, register below!</p>
                 </div>
                 <div class="hero-buttons-group">
-                        <div class="hero-button">
-                            <div class="hero-text-container">
-                                    <b class="hero-button-text">Register</b>
-                            </div>
-                            <img class="icon-jam-icons-outline-l" alt="" src="icon / jam-icons / outline & logos / arrow-right.svg" />
-                            
-                        </div>
-                </div>
+                    <div class="hero-button">
+                        <div class="hero-text-container">
+                            <b class="hero-button-text">Register <FontAwesomeIcon icon="fa-solid fa-arrow-right" style={{color: "#ffffff",}} /></b>
+                        </div> 
+                    </div>
+                 </div>
             </div>
-            <img class="hero-img" alt="Man Walking Dog" src="./images/dogwalk.png" />   
+            <img class="hero-img" alt="Man Walking Dog" src={Walker} />   
         </div>
     )
 }
