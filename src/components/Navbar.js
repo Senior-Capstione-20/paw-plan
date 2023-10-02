@@ -2,6 +2,10 @@ import React from "react";
 
 const Navbar = () => {
     return (
+        /* TO-DO 
+            - Create clickable elements
+            - Change NavBar to react if a user is logged in
+        */
         <div class="navbar">
                 <div class="left">
                     <b class="paw-plan"><span>paw-plan</span></b>
