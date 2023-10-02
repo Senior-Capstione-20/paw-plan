@@ -6,7 +6,6 @@ The Projects Codebase is located in the pet-plan folder, however, I am consideri
 
 TODOs:
 - [X] Remove pet-plan folder - @bradyhendu
-- [ ] Discuss use of Tailwind CSS
 - [X] Discuss use of React
 - [X] Discuss different pages
 - [X] Create Landing page @bradyhendu
