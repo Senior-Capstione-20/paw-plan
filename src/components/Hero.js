@@ -1,6 +1,5 @@
 import React from "react";
 import Walker from '../images/dogwalk.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Hero = () => {
     return (
@@ -16,7 +15,7 @@ const Hero = () => {
                 <div class="hero-buttons-group">
                     <div class="hero-button">
                         <div class="hero-text-container">
-                            <b class="hero-button-text">Register <FontAwesomeIcon icon="fa-solid fa-arrow-right" style={{color: "#ffffff",}} /></b>
+                            <b class="hero-button-text">Register</b>
                         </div> 
                     </div>
                  </div>
