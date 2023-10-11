@@ -4,8 +4,8 @@ function PetRegistration() {
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState(0);
-  const [gender, setGender] = useState('')
-  const {weight, setWeight} = useState(0)};
+  const [gender, setGender] = useState('');
+  const [weight, setWeight] = useState(0);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,9 +34,13 @@ function PetRegistration() {
           <option value="female">Female</option>
         </select>
       </label>
+      <label>
+        Weight:
+        <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} required min="0" />
+      </label>
       <button type="submit">Submit</button>
     </form>
   );
-  
+}
 
 export default PetRegistration;
