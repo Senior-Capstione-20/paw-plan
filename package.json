@@ -1,5 +1,5 @@
 {
-  "name": "pet-plan",
+  "name": "paw-plan",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "browserify-zlib": "^0.2.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
+    "package-name": "^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
@@ -42,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Group 20's SE Capstone Project: A Doggy Calendar Website",
+  "main": "index.js",
+  "author": "Chelsea Mensah",
+  "license": "ISC"
 }
