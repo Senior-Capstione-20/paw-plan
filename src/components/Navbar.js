@@ -2,31 +2,30 @@ import React from "react";
 
 const Navbar = () => {
     return (
-        /* TO-DO 
-            - Create clickable elements
-            - Change NavBar to react if a user is logged in
-        */
-        <div class="navbar">
-            <div class="left">
-                <a class="paw-plan" href='/'><span>paw-plan</span></a>
-                <div class="buttons-group">
-                    <div class="menu-item">
-                        <a class="nav-link" href='/about'>About</a>
+        <div className="navbar">
+            <div className="left">
+                <a className="paw-plan" href="/"><span>paw-plan</span></a>
+                <div className="buttons-group">
+                    <div className="menu-item">
+                        <a className="nav-link" href="/about">About</a>
+                    </div>
+                    <div className="menu-item">
+                        <a className="nav-link" href="/dashboard">Dashboard</a>
                     </div>
                 </div>
             </div>
-        <div class="buttons-group1">
-            <div class="button">
-                <div class="text-container">
-                    <div class="button-text">Log In</div>
+            <div className="buttons-group1">
+                <div className="button">
+                    <div className="text-container">
+                        <div className="button-text">Log In</div>
+                    </div>
+                </div>
+                <div className="button1">
+                    <div className="text-container">
+                        <div className="button-text">Register</div>
+                    </div>
                 </div>
             </div>
-            <div class="button1">
-                <div class="text-container">
-                    <div class="button-text">Register</div>
-                </div>
-            </div>
-        </div>
         </div>
     )
 }
