@@ -18,7 +18,7 @@ const Navbar = () => {
         <div class="buttons-group1">
             <div class="button">
                 <div class="text-container">
-                    <div class="button-text">Log In</div>
+                    <a class="nav-link" href='/login'>Log In</a>
                 </div>
             </div>
             <div class="button1">
