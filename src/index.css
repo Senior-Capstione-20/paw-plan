@@ -1,3 +1,10 @@
+/* Variables start */
+:root{
+  --purple: #4c1d95;
+  --light-purple: #7c3aed;
+}
+/* Variables End */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -23,7 +30,7 @@ a{
   top: 0px;
   right: 0px;
   left: 0px;
-  background-color: #4c1d95;
+  background-color: var(--purple);
   height: 86px;
 }
 .paw-plan {
@@ -53,7 +60,7 @@ a{
   position: absolute;
   top: 24px;
   left: 80px;
-  background-color: #4c1d95;
+  background-color: var(--purple);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,8 +92,8 @@ a{
 }
 .button1 {
   border-radius: 50px;
-  background-color: #7c3aed;
-  border: 2px solid #7c3aed;
+  background-color: var(--light-purple);
+  border: 2px solid var(--light-purple);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -112,7 +119,7 @@ a{
   font-size: 32px;
   color: #fff;
   font-family: Roboto;
-  background-color: #4c1d95;
+  background-color: var(--purple);
 }
 /* Navbar End */
 
@@ -122,7 +129,7 @@ a{
   position: relative;
   line-height: 110%;
   font-weight: 800;
-  color:#4c1d95;
+  color:var(--purple);
 }
 .top {
   align-self: stretch;
@@ -154,8 +161,8 @@ a{
 }
 .hero-button {
   border-radius: 50px;
-  background-color: #7c3aed;
-  border: 2px solid #7c3aed;
+  background-color: var(--light-purple);
+  border: 2px solid var(--light-purple);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -277,9 +284,9 @@ a{
 }
 .plan-button {
   border-radius: 50px;
-  background-color: #7c3aed;
+  background-color: var(--light-purple);
   box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(0, 0, 0, 0.07);
-  border: 2px solid #7c3aed;
+  border: 2px solid var(--light-purple);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -295,7 +302,7 @@ a{
 }
 .planning-section {
   flex: 1;
-  background-color: #4c1d95;
+  background-color: var(--purple);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -361,3 +368,7 @@ a{
 }
 
 /* Planning End */
+
+/* About Start */
+
+/* About End */
