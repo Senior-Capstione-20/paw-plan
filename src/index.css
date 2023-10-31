@@ -370,5 +370,108 @@ a{
 /* Planning End */
 
 /* About Start */
+.about-caption {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: 3px;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+.about-main-headline {
+  align-self: stretch;
+  position: relative;
+  font-size: 72px;
+  line-height: 110%;
+  font-weight: 800;
+  color: #0f172a;
+  display: none;
+}
+.about-secondary-headline {
+  align-self: stretch;
+  position: relative;
+  font-size: 64px;
+  line-height: 110%;
+  font-weight: 800;
+  color: #fff;
+  color: var(--purple);
+}
+.about-top {
+  width: 708px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  color: #ce90f1;
+}
+.in-the-world {
+  margin: 0;
+}
+.about-paragraph {
+  position: relative;
+  line-height: 160%;
+  white-space: pre-wrap;
+  display: inline-block;
+  width: 708px;
+  color: black;
+}
+.about-button-text {
+  position: relative;
+  letter-spacing: 0.5px;
+  line-height: 24px;
+}
+.about-text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 24px;
+}
+.about-button {
+  border-radius: 50px;
+  background-color: var(--light-purple);;
+  box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25), 0px 0px 15px rgba(0, 0, 0, 0.07);
+  border: 2px solid var(--light-purple);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+}
+.about-section-text1 {
+  width: 791px;
+  height: 1068px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 80px;
+  box-sizing: border-box;
+  gap: 32px;
+}
+.dogs-swimming {
+  position: relative;
+  width: 935px;
+  height: 900px;
+  object-fit: cover;
+  margin-top: 32px;
+}
+.about-section-text {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 114px;
+  text-align: left;
+  font-size: 28px;
+  color: #fff;
+  font-family: Roboto;
+}
+.about-bg{
+  height: 100vh;
+}
 
 /* About End */
