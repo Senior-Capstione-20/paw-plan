@@ -23,7 +23,7 @@ const Navbar = () => {
             </div>
             <div class="button1">
                 <div class="text-container">
-                    <div class="button-text">Register</div>
+                    <a class="nav-link" href='/registration'>Register</a>
                 </div>
             </div>
         </div>

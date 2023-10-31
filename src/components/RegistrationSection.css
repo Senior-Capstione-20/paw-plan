@@ -1,5 +1,5 @@
-.loginWrapper {
-  background-image: url("../images/walkingpath.jpg");
+.registrationWrapper {
+  background-image: url("../images/happy-dog.png");
   background-size: cover;
   position: relative;
   width: 100%;
@@ -18,7 +18,7 @@
   height: 908px;
   object-fit: cover;
 }
-.loginBoxBorder1 {
+.registrationBoxBorder1 {
   position: absolute;
   top: 100px;
   left: 521px;
@@ -26,6 +26,6 @@
   background-color: rgba(76, 29, 149, 0.5);
   backdrop-filter: blur(4px);
   width: 700px;
-  height: 575px;
+  height: 450px;
 }
 

@@ -22,6 +22,9 @@ const LogInSection = () => {
 						<p>Forgot Password? </p>
 						<input type="email" placeholder='Enter Email'/>
 					</label>
+					<div>
+						<button type="submit">Submit</button>
+					</div>
 				</form>
 			</div>
 		</div>
