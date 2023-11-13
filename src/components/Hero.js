@@ -15,7 +15,7 @@ const Hero = () => {
                 <div class="hero-buttons-group">
                     <div class="hero-button">
                         <div class="hero-text-container">
-                            <b class="hero-button-text">Register</b>
+                            <a class="nav-link" href='/registration'>Register</a>
                         </div> 
                     </div>
                  </div>

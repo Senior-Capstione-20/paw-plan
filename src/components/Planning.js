@@ -20,7 +20,7 @@ const Planning = () => {
         				<div class="plan-buttons-group">
           					<div class="plan-button">
             						<div class="plan-text-container">
-              							<b class="plan-button-text">Register</b>
+									<a class="nav-link" href='/registration'>Register</a>
             						</div>
           					</div>
         				</div>

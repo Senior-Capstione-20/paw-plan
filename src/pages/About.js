@@ -16,9 +16,9 @@ const About = () => {
                         <p class="in-the-world">&nbsp;</p>
                         <p class="in-the-world"> You can schedule when your dog needs to be walked, fed, or any activity your dog could do and paw-plan will send a notification based on the selected times. The notifications will be categorized and specify if it is a walking reminder, a meal reminder, a vet appointment reminder, a park/play date reminder, and other potential categories to be decided later. You can also decide when you want the notifications to be sent.</p>
                     </div>
-                    <div class="about-button">
+                    <div class="about-button" href='/register'>
                         <div class="about-text-container">
-                            <b class="about-button-text">Register</b>
+                            <a class="nav-link" href='/registration'>Register</a>
                         </div>
                     </div>
                 </div>
