@@ -7,7 +7,7 @@ const Dashboard = () => {
     const title = prompt('Enter an event title:');
     if (title) {
       // Add the event to the calendar
-      calendarRef.current.getApi().addEvent({
+      calendarRef.current.addEvent({
         title: title,
         start: info.startStr,
         end: info.endStr,
