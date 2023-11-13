@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import About from './pages/About';  
 import LogInPage from './pages/LogIn';
-import PetRegistration from './components/PetRegistration';
+import PetRegistration from './pages/PetRegistration';
 //  <Route path='/petregistration' element={<PetRegistration />} />
 
 import RegistrationPage from './pages/Registration';

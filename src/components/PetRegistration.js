@@ -1,5 +1,5 @@
 import React from "react";
-import "./PetRegistration.css";
+import "./PetRegistrationSection.css";
 
 const PetRegistration = () => {
   return (
@@ -13,7 +13,7 @@ const PetRegistration = () => {
       <i className="name">{`Name `}</i>
       <i className="age">{`Age `}</i>
       <i className="breed">{`Breed `}</i>
-      <i className="weight">Weight</i>
+      <i className="weight">{'Weight'}</i>
       <div className="pet-registration-child1" />
       <i className="register">{`Register `}</i>
     </div>
