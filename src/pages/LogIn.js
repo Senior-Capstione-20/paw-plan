@@ -1,11 +1,11 @@
 import React from "react";
-import LogInSection from "../components/LogInSection";
+import LogIn from "../components/LogIn";
 
 const LogInPage = () => {
     return (
         <div className="login-container">
             
-            <LogInSection />
+            <LogIn />
         </div>
     )
 }
