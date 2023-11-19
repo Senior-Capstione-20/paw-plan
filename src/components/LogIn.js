@@ -51,7 +51,7 @@ const Login = () => {
 			} else if (err.response?.status === 400) {
 				setErrMsg('Invalid username or password');
 			} else if (err.response?.status === 401) {
-				setErrMsg('Unauthorized');
+				setErrMsg('No User');
 			} else {
 				setErrMsg('Something went wrong');
 			}
@@ -73,7 +73,6 @@ const Login = () => {
 			) : (
 		<section className='loginWrapper'>
 			<section className='loginBoxBorder1'>
-				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
 				<h1>Paw Plan Login</h1>
 				<form onSubmit={handleSubmit}>
 					<label htmlFor="username">
@@ -110,6 +109,7 @@ const Login = () => {
 				<span className="line">
 						<a href="/registration" style={{color: "#ede0ff"}}>Click here to sign up!</a>
 				</span>
+				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}} > {errMsg} </p>
 			</section>
 		</section>
 			)}
