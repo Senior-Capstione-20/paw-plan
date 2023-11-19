@@ -9,27 +9,26 @@ const LOGIN_URL = '/login';
 
 
 const Login = () => {
+	// use auth context across app
 	const { setAuth } = useContext(AuthContext);
+
+	// allow reference to variable fields from the webpage
 	const userRef = useRef();
 	const errRef = useRef();
 
+	// define variables for client data, dynamic error message parsing, and success flag
 	const [user, setUser] = useState('');
 	const [pwd, setPwd] = useState('');
 	const [errMsg, setErrMsg] = useState('');
 	const [success, setSuccess] = useState('');
 
-	useEffect(() => {
-		userRef.current.focus();
-	}, [])
-
-	useEffect(() => {
-		setErrMsg('');
-	}, [user, pwd])
-
+	// functionality on button press
 	const handleSubmit = async (e) => {
+		// stops page from refreshing
 		e.preventDefault();
 		
 		try {
+			// send input data via POST request through axios to the server
 			const response = await axios.post(LOGIN_URL, 
 				JSON.stringify({user, pwd}), 
 				{
@@ -37,21 +36,21 @@ const Login = () => {
 					withCredentials: true
 				}
 			);
-			console.log(JSON.stringify(response?.data));
-			const accessToken = response?.data?.accessToken;
-			//const roles = response?.data?.roles;
-			//setAuth({ user, pwd, roles, accessToken })
-			setAuth({ user, pwd, accessToken })
+			// for debuging: console.log(JSON.stringify(response?.data));
+			
+			// set authorized across app, clear input fields and set success flag
+			setAuth({ user, pwd })
 			setUser('');
 			setPwd('');
 			setSuccess(true);
 		} catch (err) {
+			// in case of error, parse error message and display it
 			if (!err?.response) {
 				setErrMsg('No server response');
 			} else if (err.response?.status === 400) {
 				setErrMsg('Invalid username or password');
 			} else if (err.response?.status === 401) {
-				setErrMsg('No User');
+				setErrMsg('Wrong password');
 			} else {
 				setErrMsg('Something went wrong');
 			}
@@ -60,6 +59,7 @@ const Login = () => {
 		
 	}
 
+	// render two different pages dynamically based on success flag
 	return (
 		<>
 			{success ? (
@@ -109,7 +109,7 @@ const Login = () => {
 				<span className="line">
 						<a href="/registration" style={{color: "#ede0ff"}}>Click here to sign up!</a>
 				</span>
-				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}} > {errMsg} </p>
+				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}}>{errMsg}</p>
 			</section>
 		</section>
 			)}
