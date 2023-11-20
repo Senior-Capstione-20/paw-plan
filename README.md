@@ -9,15 +9,14 @@ TODOs:
 - [X] Discuss use of React
 - [X] Discuss different pages
 - [X] Create Landing page @bradyhendu
-- [ ] Create Login / Register page - @RyanF02
-- [ ] Create Calendar Component - @smetellus01
+- [X] Create Login / Register page - @RyanF02
+- [X] Create Calendar Component - @smetellus01
 - [ ] Create Dashboard - @Chelzvea
 - [ ] Create Pet Registration - @Chelzvea
-- [ ] Create Profile page 
+- [ ] Create Profile page - @bradyhendu
 - [ ] Create Settings page 
 - [ ] Create About page - @bradyhendu
-- [ ] Discuss how to implement different pages
 - [ ] Change div in navbar to a once different pages are created - @bradyhendu
-- [ ] Update CSS names to be individualized - @bradyhendu
-- [ ] Potentially put different page components in separate file - @bradyhendu
+- [X] Update CSS names to be individualized - @bradyhendu
+- [X] Potentially put different page components in separate file - @bradyhendu
 - [ ] Implement a user database - @nevinramjitsingh
