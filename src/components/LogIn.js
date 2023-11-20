@@ -14,12 +14,12 @@ const Login = () => {
 
 	// allow reference to variable fields from the webpage
 	const userRef = useRef();
-	const errRef = useRef();
+	const errorRef = useRef();
 
 	// define variables for client data, dynamic error message parsing, and success flag
 	const [user, setUser] = useState('');
-	const [pwd, setPwd] = useState('');
-	const [errMsg, setErrMsg] = useState('');
+	const [password,setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [success, setSuccess] = useState('');
 
 	// functionality on button press
@@ -30,7 +30,7 @@ const Login = () => {
 		try {
 			// send input data via POST request through axios to the server
 			const response = await axios.post(LOGIN_URL, 
-				JSON.stringify({user, pwd}), 
+				JSON.stringify({user, password}), 
 				{
 					headers: { 'Content-Type': 'application/json'},
 					withCredentials: true
@@ -39,22 +39,22 @@ const Login = () => {
 			// for debuging: console.log(JSON.stringify(response?.data));
 			
 			// set authorized across app, clear input fields and set success flag
-			setAuth({ user, pwd })
+			setAuth({ user, password })
 			setUser('');
-			setPwd('');
+			setPassword('');
 			setSuccess(true);
 		} catch (err) {
 			// in case of error, parse error message and display it
 			if (!err?.response) {
-				setErrMsg('No server response');
+				setErrorMessage('No server response');
 			} else if (err.response?.status === 400) {
-				setErrMsg('Invalid username or password');
+				setErrorMessage('Invalid username or password');
 			} else if (err.response?.status === 401) {
-				setErrMsg('Wrong password');
+				setErrorMessage('Wrong password');
 			} else {
-				setErrMsg('Something went wrong');
+				setErrorMessage('Something went wrong');
 			}
-			errRef.current.focus();
+			// errorRef.current.focus();
 		}
 		
 	}
@@ -93,8 +93,8 @@ const Login = () => {
 						<input 
 							type="password" 
 							id="password"
-							onChange={(e) => setPwd(e.target.value)}
-							value={pwd}
+							onChange={(e) => setPassword(e.target.value)}
+							value={password}
 							required
 						/>
 					</label>
@@ -109,7 +109,7 @@ const Login = () => {
 				<span className="line">
 						<a href="/registration" style={{color: "#ede0ff"}}>Click here to sign up!</a>
 				</span>
-				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}}>{errMsg}</p>
+				<p ref={errorRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}}>{errorMessage}</p>
 			</section>
 		</section>
 			)}
