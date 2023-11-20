@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 const Dashboard = () => {
+  const calendarRef = useRef(null);
+
   const handleSelect = (info) => {
     const title = prompt('Enter an event title:');
     if (title) {
       // Add the event to the calendar
-      calendarRef.current.addEvent({
+      calendarRef.current.getApi().addEvent({
         title: title,
         start: info.startStr,
         end: info.endStr,
       });
     }
   };
-
-  const calendarRef = React.createRef();
 
   return (
     <div>
@@ -31,3 +31,5 @@ const Dashboard = () => {
     </div>
   );
 };
+
+export default Dashboard;
