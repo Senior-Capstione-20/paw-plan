@@ -1,23 +1,53 @@
 import React from "react";
 import "./PetRegistrationSection.css";
 
-const PetRegistration = () => {
+function PetRegistration() {
   return (
-    <div className="pet-registration">
+    <div className="PetRegistration">
       <img className="gsp-1-icon" alt="" src="/gsp-1@2x.png" />
       <b className="register-pet">{`Register Pet `}</b>
-      <div className="pet-registration-child" />
-      <div className="pet-registration-item" />
-      <div className="pet-registration-inner" />
-      <div className="rectangle-div" />
-      <i className="name">{`Name `}</i>
-      <i className="age">{`Age `}</i>
-      <i className="breed">{`Breed `}</i>
-      <i className="weight">{'Weight'}</i>
-      <div className="pet-registration-child1" />
-      <i className="register">{`Register `}</i>
+     
+
+
+<label  htmlFor="name"> Name</label>
+      <input
+       className="name"
+       type="text"
+       placeholder="Enter Name"
+       />
+      
+
+      <label  htmlFor="age"> Age</label>
+      <input
+      className="age"
+      type="text"
+      placeholder="Enter Age"
+      />
+
+<label  htmlFor="breed"> Breed</label>
+      <input
+        className="breed"
+        type="text"
+        placeholder="Enter Breed"
+      />
+
+<label  htmlFor="weight"> Weight</label>
+      <input
+        className="weight"
+        type="text"
+        placeholder="Enter Weight"
+      />
+
+
+    
+
+
+
+
+      <button className="rectangle-button">Register</button>
+   
     </div>
   );
-};
+}
 
 export default PetRegistration;

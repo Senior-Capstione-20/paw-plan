@@ -1,109 +1,4 @@
-.pet-registration .gsp-1-icon {
-  position: absolute;
-  top: 158px;
-  left: 698px;
-  width: 331px;
-  height: 348px;
-  object-fit: cover;
-}
-
-.pet-registration .register-pet {
-  position: absolute;
-  top: 87px;
-  left: 73px;
-  font-size: 96px;
-  display: inline-block;
-  width: 625px;
-  height: 101px;
-}
-
-.pet-registration .pet-registration-child,
-.pet-registration .pet-registration-inner,
-.pet-registration .pet-registration-item,
-.pet-registration .rectangle-div {
-  position: absolute;
-  top: 574px;
-  left: 542px;
-  background-color: var(--color-gainsboro);
-  width: 644px;
-  height: 94px;
-}
-
-.pet-registration .pet-registration-inner,
-.pet-registration .pet-registration-item,
-.pet-registration .rectangle-div {
-  top: 963px;
-}
-
-.pet-registration .pet-registration-inner,
-.pet-registration .rectangle-div {
-  top: 826px;
-}
-
-.pet-registration .rectangle-div {
-  top: 700px;
-}
-
-.pet-registration .age,
-.pet-registration .breed,
-.pet-registration .name,
-.pet-registration .weight {
-  position: absolute;
-  top: 598px;
-  left: 578px;
-  display: flex;
-  font-weight: 100;
-  align-items: center;
-  width: 397px;
-  height: 48px;
-}
-
-.pet-registration .age,
-.pet-registration .breed,
-.pet-registration .weight {
-  top: 716px;
-  left: 561px;
-  width: 287px;
-  height: 59px;
-}
-
-.pet-registration .breed,
-.pet-registration .weight {
-  top: 845px;
-  left: 563px;
-  width: 214px;
-  height: 45px;
-}
-
-.pet-registration .weight {
-  top: 989px;
-  left: 565px;
-  width: 377px;
-  height: 50px;
-}
-
-.pet-registration .pet-registration-child1 {
-  position: absolute;
-  top: 87px;
-  left: 1287px;
-  background-color: var(--color-gainsboro);
-  width: 358px;
-  height: 44px;
-}
-
-.pet-registration .register {
-  position: absolute;
-  top: 101px;
-  left: 1318px;
-  font-size: 24px;
-  display: flex;
-  font-weight: 100;
-  align-items: center;
-  width: 270px;
-  height: 8px;
-}
-
-.pet-registration {
+.PetRegistration {
   position: relative;
   background-color: #fff;
   width: 100%;
@@ -113,4 +8,56 @@
   font-size: var(--font-size-13xl);
   color: var(--color-blue);
   font-family: var(--font-inter);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.PetRegistration label {
+  font-size: 30px; /* Adjust as needed */
+  margin-bottom: 20px; /* Add spacing between label and input */
+  text-align: left; /* Right-align the labels */
+  color: black;
+}
+
+.gsp-1-icon {
+  width: 331px;
+  height: 348px;
+  object-fit: cover;
+  background-image: url('gsp.jpeg'); /* Adjust the path accordingly */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.register-pet {
+  font-size: 96px;
+  width: 625px;
+  height: 101px;
+  margin-bottom: 20px;
+  color: blueviolet;
+  text-align: center;
+}
+
+.pet-registration-inner,
+.rectangle-textfield,
+.name,
+.age,
+.breed,
+.weight {
+  width: 100%;
+  max-width: 600px;
+  border: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+
+
+.register {
+  width: 200px; /* adjust as needed */
+  height: 50px; /* adjust as needed */
+  background-color: blueviolet;
+  color: white;
+ 
 }
