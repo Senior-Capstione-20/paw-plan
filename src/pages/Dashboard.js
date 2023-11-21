@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import './Dashboard.css';
 
 const Dashboard = () => {
   const calendarRef = useRef(null);
@@ -15,7 +16,7 @@ const Dashboard = () => {
   };
 
   const handleEventClick = (clickInfo) => {
-    // Handle event click, you can perform actions such as deletion here
+   
     setSelectedEvent(clickInfo.event);
   };
 
