@@ -1,9 +1,4 @@
-
-//const fs = require("fs");
-
-//const tempData = require('../users.json')
-//console.log(tempData);
-
+/*
 const fs = require('fs').promises;
 
 async function readFileAsync(filePath, encoding) {
@@ -35,33 +30,17 @@ setUsersDB().then((tempDB) => {
 
 //console.log(fileData);
 
-/*
-fs.readFile("./users.json", "utf8", (err, jsonString) => {
-    if (err) {
-      console.log("File read failed:", err);
-      return;
-    }
-    console.log("File read successfully");
-    fileData = jsonString;
-    //console.log(fileData);
-})
-*/
-
-//console.log(usersDB.users);
-
-// Importing necessary modules
-// const client = require('../models/Client');
 const bcrypt = require('bcrypt');
 
 const handleLogin = async (req, res) => {
-    const { user, pwd } = req.body;
-    if ( !user | !pwd ) return res.status(400).json({ 'message': 'Missing required username or password' });
+    const { user, password } = req.body;
+    if ( !user | !password ) return res.status(400).json({ 'message': 'Missing required username or password' });
 
     const foundUser = usersDB.users.find( u => u.username === user );
     if(!foundUser) return res.sendStatus(401); // unauthorized, no user
 
     // evaluate password
-    const match = await bcrypt.compare(pwd, foundUser.password);
+    const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
         res.json( {'success' : `User ${user} is loggin in!`} );
     } else {
@@ -71,62 +50,73 @@ const handleLogin = async (req, res) => {
 }
 
 module.exports = { handleLogin };
-
-/*
-const fs = require('fs').promises;
-
-async function readFileAsync(filePath, encoding) {
-  try {
-    const data = await fs.readFile(filePath, encoding);
-    return JSON.parse(data);
-  } catch (error) {
-    console.error('Error reading file:', error);
-    // throw error; // rethrow the error to handle it elsewhere if needed
-  }
-}
-
-async function init() {
-  try {
-    const fileData = await readFileAsync('./users.json', 'utf8');
-    const usersDB = {
-      users: fileData, //JSON.parse(fileData),
-      setUsers: function (data) {
-        this.users = data;
-      },
-    };
-
-    // Now you can work with usersDB.users
-    console.log(usersDB.users);
-
-    // Importing necessary modules
-    // const client = require('../models/Client');
-    const bcrypt = require('bcrypt');
-
-    const handleLogin = async (req, res) => {
-      const { user, pwd } = req.body;
-      if (!user || !pwd) return res.status(400).json({ message: 'Missing required username or password' });
-
-      const foundUser = usersDB.users.find((u) => u.username === user);
-      if (!foundUser) return res.sendStatus(401); // unauthorized, no user
-
-      // evaluate password
-      const match = await bcrypt.compare(pwd, foundUser.password);
-      if (match) {
-        res.json({ success: `User ${user} is logging in!` });
-      } else {
-        // create json web tokens here for further authentication
-        res.sendStatus(401); // unauthorized, wrong password
-      }
-    };
-
-    // Now you can use handleLogin or export it
-  } catch (error) {
-    // Handle errors during initialization
-    console.error('Initialization error:', error);
-  }
-}
-
-// Call the initialization function
-init();
 */
 
+const express = require('express');
+const app = express();
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+
+const sqlite3 = require('sqlite3').verbose();
+const bcrypt = require('bcrypt');
+
+let db = new sqlite3.Database('./usersDB.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the usersDB database.');
+ });
+ 
+ db.run('CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  // console.log('Created users table.');
+ });
+
+
+ const usersDB = {
+  db: db,
+  setUsers: function (data) {
+    const statement = this.db.prepare('INSERT INTO users VALUES (?, ?)');
+    data.forEach((user) => {
+      statement.run(user.username, user.password);
+    });
+    stmt.finalize();
+  },
+  getUser: function (username, callback) {
+    this.db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
+      if (err) {
+        console.error(err.message);
+      }
+      callback(row);
+    });
+  }
+ }
+ 
+
+ const handleLogin = async (req, res) => {
+  console.log(req.body); // Log the request body
+  const { user, password } = req.body;
+  if (!user || !password) return res.status(400).json({ 'message': 'Missing required username or password' });
+ 
+  usersDB.getUser(user, (foundUser) => {
+    if (!foundUser) return res.sendStatus(401); // unauthorized, no user
+ 
+    // evaluate password
+    bcrypt.compare(password, foundUser.password, (err, match) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ 'message': 'Error comparing passwords' });
+      }
+      if (match) {
+        res.json( {'success' : `User ${user} is logged in!`} );
+      } else {
+        res.sendStatus(401); // unauthorized, wrong password
+      }
+    });
+  });
+ }
+
+ module.exports = { handleLogin };

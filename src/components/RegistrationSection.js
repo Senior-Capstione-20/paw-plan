@@ -8,12 +8,12 @@ const RegistrationSection = () => {
 
 	// define variables for client data, dynamic error message parsing, and success flag
 	const [user, setUser] = useState('');
-	const [pwd, setPwd] = useState('');
-	const [errMsg, setErrMsg] = useState('');
+	const [password, setPassword] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [success, setSuccess] = useState('');
 
 	const userRef = useRef();
-	const errRef = useRef();
+	const errorRef = useRef();
 
 	// functionality on button press
 	const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ const RegistrationSection = () => {
 		try {
 			// send input data via POST request through axios to the server
 			const response = await axios.post(REGISTER_URL, 
-				JSON.stringify({user, pwd}), 
+				JSON.stringify({user, password}), 
 				{
 					headers: { 'Content-Type': 'application/json'},
 					withCredentials: true
@@ -34,20 +34,20 @@ const RegistrationSection = () => {
 			
 			// clear input fields and set success flag
 			setUser('');
-			setPwd('');
+			setPassword('');
 			setSuccess(true);
-		} catch (err) {
+		} catch (error) {
 			// in case of error, parse error message and display it
-			if (!err?.response) {
-				setErrMsg('No server response');
-			} else if (err.response?.status === 500) {
-				setErrMsg("Something went wrong");
-			} else if (err.response?.status === 409) {
-				setErrMsg("Username already exists");
+			if (!error?.response) {
+				setErrorMessage('No server response');
+			} else if (error.response?.status === 500) {
+				setErrorMessage("Something went wrong");
+			} else if (error.response?.status === 409) {
+				setErrorMessage("Username already exists");
 			} else {
-				setErrMsg('Glitch in the matrix occured');
+				setErrorMessage('Glitch in the matrix occured');
 			}
-			errRef.current.focus();
+			errorRef.current.focus();
 		}
 		
 	}
@@ -86,8 +86,8 @@ const RegistrationSection = () => {
 						<input 
 							type="password" 
 							id="password"
-							onChange={(e) => setPwd(e.target.value)}
-							value={pwd}
+							onChange={(e) => setPassword(e.target.value)}
+							value={password}
 							required
 						/>
 					</label>
@@ -102,7 +102,7 @@ const RegistrationSection = () => {
 				<span className="line">
 						<a href="/login" style={{color: "#ede0ff"}}>Click here to sign in!</a>
 				</span>
-				<p ref={errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}} > {errMsg} </p>
+				<p ref={errorRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}} > {errorMessage} </p>
 			</section>
 		</section>
 			)}
