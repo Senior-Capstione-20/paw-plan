@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 
-import { Icon } from 'react-icons-kit';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
