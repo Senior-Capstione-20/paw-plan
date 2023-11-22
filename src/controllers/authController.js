@@ -83,7 +83,7 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
     data.forEach((user) => {
       statement.run(user.username, user.password);
     });
-    stmt.finalize();
+    statement.finalize();
   },
   getUser: function (username, callback) {
     this.db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
