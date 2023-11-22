@@ -4,8 +4,9 @@ import "./PetRegistrationSection.css";
 function PetRegistration() {
   return (
     <div className="PetRegistration">
+       <b className="register-pet">{`Register Pet `}</b>
       <img className="gsp-1-icon" alt="" src="/gsp-1@2x.png" />
-      <b className="register-pet">{`Register Pet `}</b>
+      
      
 
 
