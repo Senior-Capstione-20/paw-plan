@@ -8,7 +8,16 @@
 
 // Importing necessary modules
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+ }));
+
+// your routes here
+
 
 // Middleware to parse JSON from incoming request bodies
 app.use(express.json());
