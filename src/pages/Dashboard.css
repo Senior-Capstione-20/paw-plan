@@ -1,0 +1,39 @@
+/* Dashboard.css */
+
+.rounded-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #333; 
+}
+
+/* Style for the "Add Event" button */
+button {
+  padding: 10px 15px;
+  border-radius: 20px; 
+  background-color: #4c1d95; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px; 
+  margin-bottom: 10px; 
+  margin-top: 10px;
+  font-family: 'Roboto';
+}
+
+button:hover {
+  background-color: #35116a; 
+}
+
+/* Style for the "Remove Event" button */
+button[disabled] {
+  background-color: #ccc; 
+  cursor: not-allowed;
+}
+
+button[disabled]:hover {
+  background-color: #ccc; 
+}
