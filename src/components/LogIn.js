@@ -47,6 +47,7 @@ const Login = () => {
 			setUser('');
 			setPassword('');
 			setSuccess(true);
+		
 		} catch (err) {
 			// in case of error, parse error message and display it
 			if (!err?.response) {
