@@ -1,9 +1,13 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../context/AuthProvider';
+import { sessionService } from 'redux-react-session';
+
+import { saveUser } from '../actions';
 
 import './LogIn.css';
 
 import axios from '../api/axios';
+import { useDispatch } from 'react-redux';
 const LOGIN_URL = '/login';
 
 
@@ -21,6 +25,7 @@ const Login = () => {
 	const [password,setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 	const [success, setSuccess] = useState('');
+	const dispatch = useDispatch();
 
 	// functionality on button press
 	const handleSubmit = async (e) => {
@@ -43,6 +48,10 @@ const Login = () => {
 			setUser('');
 			setPassword('');
 			setSuccess(true);
+
+			// save session to redux store
+			dispatch(saveUser(response.data));
+			  
 		} catch (err) {
 			// in case of error, parse error message and display it
 			if (!err?.response) {

@@ -1,31 +1,34 @@
 import React, {useState, useEffect} from 'react'
+import { sessionService } from 'redux-react-session';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import store from '../store';
+
 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
-const Profile = ({ userId }) => {
+const Profile = () => {
   const text = 'User\'s Password';
   const asterisk = '*'.repeat(text.length);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-    
-  }, []);
-  /* 
-  This is for when users should be logged in to view profile
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetch(`/users/${userId}`)
-      .then(res => res.json())
-      .then(data => setUser(data))
+    sessionService.loadSession()
+      .then(currentSession => {
+        if (currentSession.user) {
+          console.log('User ' + user.username + ' is logged in');
+        } else {
+          console.log('User is not logged in');
+          navigate('/login'); // Fixed the navigate function call
+        }
+      })
       .catch(err => console.error(err));
-  }, [userId]);
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-  */
+  }, [user.username, navigate]);
+
+
   const handleToggle = () => {
     setShow(!show);
    };
@@ -34,13 +37,20 @@ const Profile = ({ userId }) => {
     <div className='profile-container'>
       <div className='profile-box'>
         <h1 className='profile-header'> User's Profile Page</h1>
-        <p>Username: Dummy Username</p>
+        <p>Username: {user.username}</p>
         <p>
           Password: <span className='password-text'>{show ? text : asterisk}</span> 
           {show ? <FaEyeSlash onClick={handleToggle} />
             : <FaEye onClick={handleToggle} />
           }
         </p>
+        <div className='logout-button'>
+          <button onClick={() => {
+            sessionService.deleteSession();
+            store.dispatch({type: 'DELETE_USER'});
+            navigate('/login');
+          }}>Logout</button>
+        </div>
       </div>
     </div>
   )
