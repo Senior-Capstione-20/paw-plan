@@ -15,9 +15,6 @@ const getUserFromToken = token => {
  };
 
 const Profile = ({ userId }) => {
-  const text = 'User\'s Password';
-  const asterisk = '*'.repeat(text.length);
-  const [show, setShow] = useState(false);
   
   let token;
   try {
@@ -29,24 +26,10 @@ const Profile = ({ userId }) => {
   const user = getUserFromToken(token);
   console.log(user);
 
-  useEffect(() => {
-    
-  }, []);
-  /* 
-  This is for when users should be logged in to view profile
+  const text = user.password;
+  const asterisk = '*'.repeat(text.length);
+  const [show, setShow] = useState(true);
 
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetch(`/users/${userId}`)
-      .then(res => res.json())
-      .then(data => setUser(data))
-      .catch(err => console.error(err));
-  }, [userId]);
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-  */
  // password span text : {show ? text : asterisk}
   const handleToggle = () => {
     setShow(!show);
@@ -59,7 +42,7 @@ const Profile = ({ userId }) => {
         <p>Username: {user.username}</p>
         <p>
           
-          Password: <span className='password-text'>{show ? asterisk : user.password}</span> 
+          Password: <span className='password-text'>{show ? asterisk : text}</span> 
           {show ? <FaEyeSlash onClick={handleToggle} />
             : <FaEye onClick={handleToggle} />
           }
