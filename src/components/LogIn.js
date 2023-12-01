@@ -38,6 +38,10 @@ const Login = () => {
 			);
 			// for debuging: console.log(JSON.stringify(response?.data));
 			
+			// store JWT in local storage
+			let token = response?.data.token;
+			localStorage.setItem('token', token);
+			
 			// set authorized across app, clear input fields and set success flag
 			setAuth({ user, password })
 			setUser('');
@@ -65,6 +69,8 @@ const Login = () => {
 			{success ? (
 				<section>
 					<h1>Successfully logged in!</h1>
+					<br />
+					<p> {localStorage.getItem('token')} </p>
 					<br />
 					<p>
 						<a href="/">Go to home page</a>

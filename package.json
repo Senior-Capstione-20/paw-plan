@@ -16,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "browserify-zlib": "^0.2.0",
     "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "package-name": "^0.1.0",
     "react": "^18.2.0",

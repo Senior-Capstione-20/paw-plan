@@ -61,6 +61,10 @@ app.use(express.json());
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcrypt');
 
+// Install jwt for user sessions
+const jwt = require('jsonwebtoken');
+
+
 let db = new sqlite3.Database('./usersDB.db', (err) => {
   if (err) {
     console.error(err.message);
@@ -110,8 +114,23 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
         console.error(err);
         return res.status(500).json({ 'message': 'Error comparing passwords' });
       }
+      // if user exists and password matches
       if (match) {
-        res.json( {'success' : `User ${user} is logged in!`} );
+
+        // create json web token
+        const payload = {
+          username: user,
+          password: password,
+          // Add any other data you want to include in the JWT
+         };
+         
+        const secretKey = 'THE_SECRETEST_KEY'; 
+         
+        const token = jwt.sign(payload, secretKey);
+         
+
+        res.status(200).json( {'success' : `User ${user} is logged in!`, token} );
+
       } else {
         res.sendStatus(401); // unauthorized, wrong password
       }
