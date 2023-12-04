@@ -24,9 +24,11 @@ const Profile = ({ userId }) => {
   }
 
   const user = getUserFromToken(token);
-  console.log(user);
-
-  const text = user.password;
+  if (user != null) {
+    console.log(user);
+    
+  }
+  const text = user ? user.password : 'password';
   const asterisk = '*'.repeat(text.length);
   const [show, setShow] = useState(true);
 
@@ -34,21 +36,48 @@ const Profile = ({ userId }) => {
   const handleToggle = () => {
     setShow(!show);
    };
+  
+   const handleSubmit = async (event) => {
+		// stops page from refreshing
+    event.preventDefault();
+    localStorage.removeItem('token');
+  };
 
   return (
-    <div className='profile-container'>
-      <div className='profile-box'>
-        <h1 className='profile-header'> User's Profile Page</h1>
-        <p>Username: {user.username}</p>
-        <p>
-          
-          Password: <span className='password-text'>{show ? asterisk : text}</span> 
-          {show ? <FaEyeSlash onClick={handleToggle} />
-            : <FaEye onClick={handleToggle} />
-          }
-        </p>
-      </div>
-    </div>
+    <>
+      { user ? (
+        <div className='profile-container'>
+          <div className='profile-box'>
+            <h1 className='profile-header'> User's Profile Page</h1>
+            <p>Username: {user.username}</p>
+            <p>
+              
+              Password: <span className='password-text'>{show ? asterisk : text}</span> 
+              {show ? <FaEyeSlash onClick={handleToggle} />
+                : <FaEye onClick={handleToggle} />
+              }
+            </p>
+            <form onSubmit={ handleSubmit }>
+              <div>
+                <button>Sign out from Paw Plan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <section>
+					<h1>You are not logged in</h1>
+					<p> {localStorage.getItem('token')} </p>
+					<p>
+						<a href="/login">Click here is log in</a>
+					</p>
+					<p>
+						<a href="/registration">Click here to register</a>
+					</p>
+				</section>
+      )
+      }
+    </>
   )
 }
 

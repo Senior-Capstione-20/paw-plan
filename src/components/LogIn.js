@@ -76,6 +76,9 @@ const Login = () => {
 					<p>
 						<a href="/">Go to home page</a>
 					</p>
+					<p>
+						<a href="/profile">Go to profile</a>
+					</p>
 				</section>
 			) : (
 		<section className='loginWrapper'>
