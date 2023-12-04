@@ -67,16 +67,8 @@ const Profile = ({ userId }) => {
           </div>
         </div>
       ) : (
-        <section>
-					<h1>You are not logged in</h1>
-					<p> {localStorage.getItem('token')} </p>
-					<p>
-						<a href="/login">Click here is log in</a>
-					</p>
-					<p>
-						<a href="/registration">Click here to register</a>
-					</p>
-				</section>
+        //route to login page
+        window.location.href = '/login'
       )
       }
     </>
