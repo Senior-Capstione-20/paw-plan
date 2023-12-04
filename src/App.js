@@ -8,7 +8,7 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import LogInPage from './pages/LogIn';
 import PetRegistration from './pages/PetRegistration';
-//  <Route path='/petregistration' element={<PetRegistration />} />
+import Dashboard from './pages/Dashboard';
 
 
 import RegistrationPage from './pages/Registration';
@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='/dashboard' element={<Dashboard />} />  { }
         <Route path='/login' element={<LogInPage />} />
         <Route path='/registration' element={<RegistrationPage />} />
         <Route path ='/petregistration' element={<PetRegistration />} />

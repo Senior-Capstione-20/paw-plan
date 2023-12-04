@@ -17,6 +17,9 @@ const Navbar = () => {
               About
             </a>
           </div>
+           <div className="menu-item">
+                <a className="nav-link" href="/dashboard">Dashboard</a>
+           </div>
 
           {/* Add the following block for Pet Registration */}
           <div className="menu-item">
