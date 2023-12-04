@@ -1,6 +1,13 @@
 import React from "react";
 
 const Navbar = () => {
+  let token;
+  try {
+    token = localStorage.getItem('token');
+  } catch (error) {
+    console.error(error);
+  }
+
   return (
     /* TO-DO 
         - Create clickable elements
@@ -17,43 +24,47 @@ const Navbar = () => {
               About
             </a>
           </div>
-           <div className="menu-item">
-                <a className="nav-link" href="/dashboard">Dashboard</a>
-           </div>
+        </div>
+      </div>
 
-          {/* Add the following block for Pet Registration */}
-          <div className="menu-item">
-            <a className="nav-link" href="/petregistration">
-              Pet Registration
-            </a>
+        {/* If a user is logged in, show the dashboard and profile*/}
+        {token ? (
+          <div className="buttons-group1">
+            <div className="menu-item">
+              <a className="nav-link" href="/dashboard">Dashboard</a>
+            </div>
+            <div className="menu-item">
+                <a className="nav-link" href="/petregistration">
+                   Pet Registration
+                </a>
+            </div>
+            <div className="button1">
+                <div className="text-container">
+                  <a className="nav-link" href="/profile">
+                    Profile
+                  </a>
+                </div>
+            </div>
           </div>
-          {/* End of Pet Registration block */}
-        </div>
+          ) : (
+            <div className="buttons-group1">
+              <div className="button">
+                <div className="text-container">
+                  <a className="nav-link" href="/login">
+                    Log In
+                  </a>
+                </div>
+              </div>
+              <div className="button1">
+                <div className="text-container">
+                  <a className="nav-link" href="/profile">
+                    Profile
+                  </a>
+                </div>
+            </div>
+            </div>
+          )}
       </div>
-      <div className="buttons-group1">
-        {/* Add the following block for Profile (TESTING ONLY) */}
-        <div className="menu-item">
-            <a className="nav-link" href="/profile">
-              Profile
-            </a>
-          </div>
-        {/* End of Profile block */}
-        <div className="button">
-          <div className="text-container">
-            <a className="nav-link" href="/login">
-              Log In
-            </a>
-          </div>
-        </div>
-        <div className="button1">
-          <div className="text-container">
-            <a className="nav-link" href="/registration">
-              Register
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
