@@ -56,12 +56,16 @@ const RegistrationSection = () => {
 	return (
 		<>
 			{success ? (
-				<section>
-					<h1>Successfully registered to paw plan!</h1>
-					<br />
-					<p>
-						<a href="/login">Go to sign in</a>
-					</p>
+				<section className='registrationWrapper'>
+					<section className='registrationBoxBorder1'>
+						<h1>Registration Successful!</h1>
+						<p>
+							Please login to continue.<br />
+						</p>
+						<span className="line">
+								<a href="/login" style={{color: "#ede0ff"}}>Click here to sign in!</a>
+						</span>
+					</section>
 				</section>
 			) : (
 		<section className='registrationWrapper'>

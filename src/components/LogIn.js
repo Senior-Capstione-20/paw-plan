@@ -68,18 +68,8 @@ const Login = () => {
 	return (
 		<>
 			{success ? (
-				<section>
-					<h1>Successfully logged in!</h1>
-					<br />
-					<p> {localStorage.getItem('token')} </p>
-					<br />
-					<p>
-						<a href="/">Go to home page</a>
-					</p>
-					<p>
-						<a href="/profile">Go to profile</a>
-					</p>
-				</section>
+				//routes to dashboard
+				window.location.replace("/dashboard")
 			) : (
 		<section className='loginWrapper'>
 			<section className='loginBoxBorder1'>
