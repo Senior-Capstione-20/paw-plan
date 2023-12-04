@@ -71,47 +71,47 @@ const Login = () => {
 				//routes to dashboard
 				window.location.replace("/dashboard")
 			) : (
-		<section className='loginWrapper'>
-			<section className='loginBoxBorder1'>
-				<h1>Paw Plan Login</h1>
-				<form onSubmit={handleSubmit}>
-					<label htmlFor="username">
-						<p>Username:</p>
-						<input 
-							type="text" 
-							id="username"
-							ref={userRef}
-							autoComplete="off"
-							onChange={(e) => setUser(e.target.value)}
-							value={user}
-							required
-						/>
-					</label>
-					
-					<label htmlFor="password">
-						<p>Password:</p>
-						<input 
-							type="password" 
-							id="password"
-							onChange={(e) => setPassword(e.target.value)}
-							value={password}
-							required
-						/>
-					</label>
-					<div>
-						<button>Submit</button>
-					</div>
-					
-				</form>
-				<p>
-					Want to Register?<br />
-				</p>
-				<span className="line">
-						<a href="/registration" style={{color: "#ede0ff"}}>Click here to sign up!</a>
-				</span>
-				<p ref={errorRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}}>{errorMessage}</p>
-			</section>
-		</section>
+				<section className='loginWrapper'>
+					<section className='loginBoxBorder1'>
+						<h1>Paw Plan Login</h1>
+						<form onSubmit={handleSubmit}>
+							<label htmlFor="username">
+								<p>Username:</p>
+								<input 
+									type="text" 
+									id="username"
+									ref={userRef}
+									autoComplete="off"
+									onChange={(e) => setUser(e.target.value)}
+									value={user}
+									required
+								/>
+							</label>
+							
+							<label htmlFor="password">
+								<p>Password:</p>
+								<input 
+									type="password" 
+									id="password"
+									onChange={(e) => setPassword(e.target.value)}
+									value={password}
+									required
+								/>
+							</label>
+							<div>
+								<button>Submit</button>
+							</div>
+							
+						</form>
+						<p>
+							Want to Register?<br />
+						</p>
+						<span className="line">
+								<a href="/registration" style={{color: "#ede0ff"}}>Click here to sign up!</a>
+						</span>
+						<p ref={errorRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive" style={{color: "#ff0000"}}>{errorMessage}</p>
+					</section>
+				</section>
 			)}
 			</>
 	)
