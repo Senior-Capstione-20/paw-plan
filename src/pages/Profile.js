@@ -41,6 +41,8 @@ const Profile = ({ userId }) => {
 		// stops page from refreshing
     event.preventDefault();
     localStorage.removeItem('token');
+    //refresh page
+    window.location.reload();
   };
 
   return (
