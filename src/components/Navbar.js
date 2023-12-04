@@ -57,8 +57,8 @@ const Navbar = () => {
               </div>
               <div className="button1">
                 <div className="text-container">
-                  <a className="nav-link" href="/profile">
-                    Profile
+                  <a className="nav-link" href="/registration">
+                    Register
                   </a>
                 </div>
             </div>
