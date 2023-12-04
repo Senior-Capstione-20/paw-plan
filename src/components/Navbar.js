@@ -25,17 +25,16 @@ const Navbar = () => {
             </a>
           </div>
           {/* End of Pet Registration block */}
-
-          {/* Add the following block for Profile (TESTING ONLY) */}
-          <div className="menu-item">
+        </div>
+      </div>
+      <div className="buttons-group1">
+        {/* Add the following block for Profile (TESTING ONLY) */}
+        <div className="menu-item">
             <a className="nav-link" href="/profile">
               Profile
             </a>
           </div>
-          {/* End of Profile block */}
-        </div>
-      </div>
-      <div className="buttons-group1">
+        {/* End of Profile block */}
         <div className="button">
           <div className="text-container">
             <a className="nav-link" href="/login">
