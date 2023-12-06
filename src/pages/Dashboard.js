@@ -32,6 +32,7 @@ const Dashboard = () => {
 
   const handleDeleteEvent = () => {
     if (selectedEvent) {
+      calendarEvents.splice(calendarEvents.indexOf(selectedEvent), 1);
       selectedEvent.remove();
       setSelectedEvent(null);
       updateLocalStorage(calendarEvents);
