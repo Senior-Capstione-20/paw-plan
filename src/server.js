@@ -25,6 +25,7 @@ app.use(express.json());
 // Mounting the authentication routes
 app.use('/register', require('./api/register'));
 app.use('/login', require('./api/auth'));
+app.use('/pets', require('./api/pet'));
 
 // Starting the server on port 3500
 app.listen(3500, () => {

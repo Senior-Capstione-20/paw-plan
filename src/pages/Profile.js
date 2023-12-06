@@ -29,6 +29,7 @@ const Profile = ({ userId }) => {
     
   }
   const text = user ? user.password : 'password';
+  const email = user ? user.email : 'email';
   const asterisk = '*'.repeat(text.length);
   const [show, setShow] = useState(true);
 
@@ -59,6 +60,7 @@ const Profile = ({ userId }) => {
                 : <FaEye onClick={handleToggle} />
               }
             </p>
+            <p>Email: {email}</p>
             <form onSubmit={ handleSubmit }>
               <div>
                 <button>Sign out from Paw Plan</button>
