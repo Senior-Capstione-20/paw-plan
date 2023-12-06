@@ -1,57 +1,3 @@
-/*
-const fs = require('fs').promises;
-
-async function readFileAsync(filePath, encoding) {
-    try {
-      const data = await fs.readFile(filePath, encoding);
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading file:', error);
-      throw error; // rethrow the error to handle it elsewhere if needed
-    }
-  }
-
-// Call the async function
-async function setUsersDB() {
-    const fileData = await readFileAsync('./users.json', 'utf8');
-    const usersDB = {
-        users: fileData,
-        setUsers: function (data) { this.users = data; } 
-    };  
-    return usersDB;
-}
-
-usersDB = '';
-// Use .then() to handle the resolved value
-setUsersDB().then((tempDB) => {
-    console.log(tempDB);
-    usersDB = tempDB;
-  });
-
-//console.log(fileData);
-
-const bcrypt = require('bcrypt');
-
-const handleLogin = async (req, res) => {
-    const { user, password } = req.body;
-    if ( !user | !password ) return res.status(400).json({ 'message': 'Missing required username or password' });
-
-    const foundUser = usersDB.users.find( u => u.username === user );
-    if(!foundUser) return res.sendStatus(401); // unauthorized, no user
-
-    // evaluate password
-    const match = await bcrypt.compare(password, foundUser.password);
-    if (match) {
-        res.json( {'success' : `User ${user} is loggin in!`} );
-    } else {
-        // create json web tokens here for further authentication
-        res.sendStatus(401); // unauthorized, wrong password
-    }
-}
-
-module.exports = { handleLogin };
-*/
-
 const express = require('express');
 const app = express();
 
@@ -72,7 +18,7 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
   console.log('Connected to the usersDB database.');
  });
  
- db.run('CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT)', (err) => {
+ db.run('CREATE TABLE IF NOT EXISTS users(username TEXT, password TEXT, email TEXT)', (err) => {
   if (err) {
     console.error(err.message);
   }
@@ -83,9 +29,9 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
  const usersDB = {
   db: db,
   setUsers: function (data) {
-    const statement = this.db.prepare('INSERT INTO users VALUES (?, ?)');
+    const statement = this.db.prepare('INSERT INTO users VALUES (?, ?, ?)');
     data.forEach((user) => {
-      statement.run(user.username, user.password);
+      statement.run(user.username, user.password, user.email);
     });
     statement.finalize();
   },
@@ -103,7 +49,7 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
  const handleLogin = async (req, res) => {
   console.log(req.body); // Log the request body
   const { user, password } = req.body;
-  if (!user || !password) return res.status(400).json({ 'message': 'Missing required username or password' });
+  if (!user || !password ) return res.status(400).json({ 'message': 'Missing required username, password, or email' });
  
   usersDB.getUser(user, (foundUser) => {
     if (!foundUser) return res.sendStatus(401); // unauthorized, no user
@@ -118,13 +64,15 @@ let db = new sqlite3.Database('./usersDB.db', (err) => {
       if (match) {
 
         // create json web token
+        console.log(foundUser);
         const payload = {
           username: user,
           password: password,
+          email: foundUser.email
           // Add any other data you want to include in the JWT
          };
          
-        const secretKey = 'THE_SECRETEST_KEY'; 
+        const secretKey = 'SOFTWARE_ENGINEERINGS_BEST_GROUP_NUMBER_20_THE_SECRETEST_KEY_PLEASE_DONT_HACK_US'; 
          
         const token = jwt.sign(payload, secretKey);
          

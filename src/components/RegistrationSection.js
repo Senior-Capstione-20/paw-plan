@@ -9,6 +9,7 @@ const RegistrationSection = () => {
 	// define variables for client data, dynamic error message parsing, and success flag
 	const [user, setUser] = useState('');
 	const [password, setPassword] = useState('');
+	const [email, setEmail] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 	const [success, setSuccess] = useState('');
 
@@ -23,7 +24,7 @@ const RegistrationSection = () => {
 		try {
 			// send input data via POST request through axios to the server
 			const response = await axios.post(REGISTER_URL, 
-				JSON.stringify({user, password}), 
+				JSON.stringify({user, password, email}), 
 				{
 					headers: { 'Content-Type': 'application/json'},
 					withCredentials: true
@@ -35,6 +36,7 @@ const RegistrationSection = () => {
 			// clear input fields and set success flag
 			setUser('');
 			setPassword('');
+			setEmail('');
 			setSuccess(true);
 		} catch (error) {
 			// in case of error, parse error message and display it
@@ -92,6 +94,17 @@ const RegistrationSection = () => {
 							id="password"
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
+							required
+						/>
+					</label>
+
+					<label htmlFor="email">
+						<p>Email:</p>
+						<input 
+							type="email" 
+							id="email"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
 							required
 						/>
 					</label>
