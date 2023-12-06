@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Dashboard.css';
@@ -10,20 +10,31 @@ const Dashboard = () => {
   const [eventDate, setEventDate] = useState('');
   const [eventTime, setEventTime] = useState('');
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [calendarEvents, setCalendarEvents] = useState([]);
+
+  // Load events from localStorage on component mount
+  useEffect(() => {
+    const savedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    setCalendarEvents(savedEvents);
+  }, []);
+
+  const updateLocalStorage = (events) => {
+    localStorage.setItem('calendarEvents', JSON.stringify(events));
+  };
 
   const handleSelect = (info) => {
     setShowForm(true);
   };
 
   const handleEventClick = (clickInfo) => {
-   
     setSelectedEvent(clickInfo.event);
   };
 
   const handleDeleteEvent = () => {
     if (selectedEvent) {
-      selectedEvent.remove(); // Remove the selected event from the calendar
-      setSelectedEvent(null); // Clear the selected event
+      selectedEvent.remove();
+      setSelectedEvent(null);
+      updateLocalStorage(calendarEvents);
     }
   };
 
@@ -32,22 +43,29 @@ const Dashboard = () => {
 
     const start = new Date(`${eventDate}T${eventTime}`);
     
-    // Add the event to the calendar
-    calendarRef.current.getApi().addEvent({
-      title: eventTitle,
-      start: start.toISOString(),
-      allDay: false, // Set to false to specify a time-based event
-    });
+    if (isNaN(start.getTime())) {
+      alert('Invalid date or time. Please check your input.');
+      return;
+    }
 
-    // Close the form and reset input values
+    const newEvent = {
+      title: eventTitle,
+      start,
+      allDay: false,
+    };
+
+    setCalendarEvents((prevEvents) => [...prevEvents, newEvent]);
+    
     setShowForm(false);
     setEventTitle('');
     setEventDate('');
     setEventTime('');
+
+    // Update localStorage with the new events
+    updateLocalStorage([...calendarEvents, newEvent]);
   };
 
   const handleFormCancel = () => {
-    // Close the form and reset input values
     setShowForm(false);
     setEventTitle('');
     setEventDate('');
@@ -101,7 +119,7 @@ const Dashboard = () => {
         initialView="dayGridMonth"
         editable={true}
         selectable={true}
-        events={[]}
+        events={calendarEvents}
         select={handleSelect}
         eventClick={handleEventClick}
         ref={calendarRef}
@@ -111,3 +129,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
