@@ -37,6 +37,7 @@ function PetRegistration() {
                 placeholder="Enter Weight"
         />
         <button className="rectangle-button">Register</button>
+        
           
       </div>
     </div>
