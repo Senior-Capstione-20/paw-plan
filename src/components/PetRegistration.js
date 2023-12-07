@@ -7,7 +7,7 @@ function PetRegistration() {
       <div className="PetRegistration">
         
         <b className="register-pet">{`Register Pet `}</b>
-        <img className="gsp-1-icon" alt="" src="/gsp-1@2x.png" />
+        {/*<img className="gsp-1-icon" alt="" src="/gsp-1@2x.png" /> */}
         <label  htmlFor="name"> Name</label>
               <input
               className="name"
