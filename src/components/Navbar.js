@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
-  let token;
-  try {
-    token = localStorage.getItem('token');
-  } catch (error) {
-    console.error(error);
-  }
+  const auth = getAuth();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+  }, []);
+  
 
   return (
     /* TO-DO 
@@ -28,7 +32,7 @@ const Navbar = () => {
       </div>
 
         {/* If a user is logged in, show the dashboard and profile*/}
-        {token ? (
+        {user ? (
           <div className="buttons-group1">
             <div className="menu-item">
               <a className="nav-link" href="/dashboard">Dashboard</a>
