@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "browserify-zlib": "^0.2.0",
+    "firebase": "^10.7.1",
     "force": "^0.0.3",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
