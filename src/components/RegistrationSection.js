@@ -66,15 +66,13 @@ const RegistrationSection = () => {
 			<section className='registrationBoxBorder1'>
 				<h1>Paw Plan Sign Up</h1>
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="username">
-						<p>Username:</p>
+					<label htmlFor="email">
+						<p>Email:</p>
 						<input 
-							type="text" 
-							id="username"
-							ref={userRef}
-							autoComplete="off"
-							onChange={(e) => setUser(e.target.value)}
-							value={user}
+							type="email" 
+							id="email"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
 							required
 						/>
 					</label>
@@ -86,17 +84,6 @@ const RegistrationSection = () => {
 							id="password"
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
-							required
-						/>
-					</label>
-
-					<label htmlFor="email">
-						<p>Email:</p>
-						<input 
-							type="email" 
-							id="email"
-							onChange={(e) => setEmail(e.target.value)}
-							value={email}
 							required
 						/>
 					</label>
