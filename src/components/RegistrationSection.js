@@ -1,8 +1,12 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import './RegistrationSection.css';
 
+//firebase
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 import axios from '../api/axios';
 const REGISTER_URL = '/register';
+
 
 const RegistrationSection = () => {
 
@@ -16,41 +20,29 @@ const RegistrationSection = () => {
 	const userRef = useRef();
 	const errorRef = useRef();
 
+	const auth = getAuth();
+
 	// functionality on button press
 	const handleSubmit = async (e) => {
 		// stops page from refreshing
 		e.preventDefault();
 		
-		try {
-			// send input data via POST request through axios to the server
-			const response = await axios.post(REGISTER_URL, 
-				JSON.stringify({user, password, email}), 
-				{
-					headers: { 'Content-Type': 'application/json'},
-					withCredentials: true
-				}
-			);
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+			// The user has been created
+			const user = userCredential.user;
 
-			// for debuging: console.log(JSON.stringify(response?.data));
-			
-			// clear input fields and set success flag
-			setUser('');
-			setPassword('');
-			setEmail('');
 			setSuccess(true);
-		} catch (error) {
-			// in case of error, parse error message and display it
-			if (!error?.response) {
-				setErrorMessage('No server response');
-			} else if (error.response?.status === 500) {
-				setErrorMessage("Something went wrong");
-			} else if (error.response?.status === 409) {
-				setErrorMessage("Username already exists");
-			} else {
-				setErrorMessage('Glitch in the matrix occured');
-			}
-			errorRef.current.focus();
-		}
+			console.log(user);
+			})
+			.catch((error) => {
+			// An error occurred
+			
+			const errorMessage = error.message;
+
+			setErrorMessage(errorMessage);
+			});
+
 		
 	}
 

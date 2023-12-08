@@ -1,6 +1,9 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from '../context/AuthProvider';
 
+//firebase
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import './LogIn.css';
 
 import axios from '../api/axios';
@@ -17,50 +20,33 @@ const Login = () => {
 	const errorRef = useRef();
 
 	// define variables for client data, dynamic error message parsing, and success flag
-	const [user, setUser] = useState('');
+	const [email, setEmail] = useState('');
 	const [password,setPassword] = useState('');
 	const [errorMessage, setErrorMessage] = useState('');
 	const [success, setSuccess] = useState('');
+
+	//firebase auth
+	const auth = getAuth();
 
 	// functionality on button press
 	const handleSubmit = async (e) => {
 		// stops page from refreshing
 		e.preventDefault();
-		
-		try {
-			// send input data via POST request through axios to the server
-			const response = await axios.post(LOGIN_URL, 
-				JSON.stringify({user, password}), 
-				{
-					headers: { 'Content-Type': 'application/json'},
-					withCredentials: true
-				}
-			);
-			// for debuging: console.log(JSON.stringify(response?.data));
-			
-			// store JWT in local storage
-			let token = response?.data.token;
-			localStorage.setItem('token', token);
-			
-			// set authorized across app, clear input fields and set success flag
-			setAuth({ user, password })
-			setUser('');
-			setPassword('');
+
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+			// The user has been signed in
+			const user = userCredential.user;
+
 			setSuccess(true);
-		
-		} catch (err) {
-			// in case of error, parse error message and display it
-			if (!err?.response) {
-				setErrorMessage('No server response');
-			} else if (err.response?.status === 400) {
-				setErrorMessage('Invalid username or password');
-			} else if (err.response?.status === 401) {
-				setErrorMessage('Wrong password');
-			} else {
-				setErrorMessage('Something went wrong');
-			}
-			// errorRef.current.focus();
-		}
+			console.log(user);
+			})
+			.catch((error) => {
+			// An error occurred
+			const errorMessage = error.message;
+
+			setErrorMessage(errorMessage);
+			});
 		
 	}
 
@@ -76,14 +62,14 @@ const Login = () => {
 						<h1>Paw Plan Login</h1>
 						<form onSubmit={handleSubmit}>
 							<label htmlFor="username">
-								<p>Username:</p>
+								<p>Email:</p>
 								<input 
-									type="text" 
-									id="username"
+									type="email" 
+									id="email"
 									ref={userRef}
 									autoComplete="off"
-									onChange={(e) => setUser(e.target.value)}
-									value={user}
+									onChange={(e) => setEmail(e.target.value)}
+									value={email}
 									required
 								/>
 							</label>
