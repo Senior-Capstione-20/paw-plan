@@ -4,27 +4,23 @@ import { getAuth, onAuthStateChanged} from "firebase/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+import useFirebaseAuthentication from '../useFirebaseAuthentication';
+
 
 
 
 const DogHouse = () => {
-    const auth = getAuth();
     const db = getFirestore();
-    let userDoc;
-
     const [dogs, setDogs] = useState([]);
-
-    onAuthStateChanged(auth, (user) => {
-        if (user){
-            userDoc = doc(db, "users", user.uid);
-        }
-
-        getUser();
-    });
+    const currentUser = useFirebaseAuthentication();
 
     
 
     const getUser = async () => {
+      if (!currentUser) {
+        return;
+      }
+      const userDoc = doc(db, "users", currentUser);
       const userSnap = await getDoc(userDoc);
       if (userSnap.exists()) {
         const userData = userSnap.data();
@@ -34,6 +30,11 @@ const DogHouse = () => {
         console.log("No such document!");
       }
     }
+
+    useEffect(() => {
+        getUser();
+    }, [currentUser]);
+    
 
     const [dogIndex, setDogIndex] = useState(0);
 
