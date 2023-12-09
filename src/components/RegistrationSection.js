@@ -3,6 +3,7 @@ import './RegistrationSection.css';
 
 //firebase
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 import axios from '../api/axios';
 const REGISTER_URL = '/register';
@@ -21,6 +22,7 @@ const RegistrationSection = () => {
 	const errorRef = useRef();
 
 	const auth = getAuth();
+	const db = getFirestore();
 
 	// functionality on button press
 	const handleSubmit = async (e) => {
@@ -34,13 +36,23 @@ const RegistrationSection = () => {
 
 			setSuccess(true);
 			console.log(user);
+
+			//add user to database
+			const userRef = doc(db, "users", user.uid);
+			setDoc(userRef, {
+				email: email,
+				password: password,
+				uid: user.uid,
+				dogs: [],
+				events: []
+			});
+
+
 			})
 			.catch((error) => {
-			// An error occurred
-			
-			const errorMessage = error.message;
-
-			setErrorMessage(errorMessage);
+				// An error occurred
+				const errorMessage = error.message;
+				setErrorMessage(errorMessage);
 			});
 
 		
