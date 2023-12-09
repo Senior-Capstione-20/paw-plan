@@ -505,3 +505,23 @@ a{
  }
 
 /* Profile End */
+
+/*Doghouse Start */
+.doghouse-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.doghouse {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--purple);
+  color: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-sizing: border-box;
+  text-align: center;
+ }
+
+/*Doghouse End */
