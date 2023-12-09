@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Dashboard.css';
 
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, deleteDoc} from "firebase/firestore";
 
 import useFirebaseAuthentication from '../useFirebaseAuthentication';
 
@@ -20,21 +20,28 @@ const Dashboard = () => {
   const currentUser = useFirebaseAuthentication();
 
 
-  const getUser = async () => {
+  const getUser = () => {
     if (!currentUser) {
-      return;
+     return;
     }
     const userDoc = doc(db, "users", currentUser);
-    const userSnap = await getDoc(userDoc);
-    if (userSnap.exists()) {
-      const userData = userSnap.data();
-      setCalendarEvents(userData.events);
-      calendarRef.current.getApi().refetchEvents();
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  }
+    getDoc(userDoc).then((userSnap) => {
+     if (userSnap.exists()) {
+       const userData = userSnap.data();
+       const events = userData.events.map(event => ({
+         id: event.id,
+         title: event.title,
+         start: event.start.toDate(),
+         allDay: event.allDay,
+         // other properties...
+       }));
+       setCalendarEvents(events);
+     } else {
+       console.log("No such document!");
+     }
+    });
+   };
+   
 
   useEffect(() => {
     getUser();
@@ -51,6 +58,16 @@ const Dashboard = () => {
   const handleDeleteEvent = () => {
     if (selectedEvent) {
       calendarEvents.splice(calendarEvents.indexOf(selectedEvent), 1);
+      calendarRef.current.getApi().refetchEvents();
+      //remove event from database
+      const eventId = selectedEvent.id;
+      deleteDoc(doc(db, 'users', currentUser, 'events', eventId))
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
       selectedEvent.remove();
       setSelectedEvent(null);
     }
@@ -72,10 +89,15 @@ const Dashboard = () => {
       return;
     }
 
+    // Generate an event ID
+    const eventId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+    // Use the event ID
     const newEvent = {
-      title: eventTitle,
-      start,
-      allDay: false,
+    title: eventTitle,
+    start,
+    allDay: false,
+    id: eventId,
     };
 
     //add event to database
