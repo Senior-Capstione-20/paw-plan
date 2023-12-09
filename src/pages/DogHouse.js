@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged} from "firebase/auth";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -32,15 +35,25 @@ const DogHouse = () => {
       }
     }
 
-    const dogElements = dogs ? dogs.map((dog, index) => {
+    const [dogIndex, setDogIndex] = useState(0);
+
+    const handleLeftClick = () => {
+        setDogIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : dogs.length - 1));
+    };
+       
+    const handleRightClick = () => {
+        setDogIndex((prevIndex) => (prevIndex < dogs.length - 1 ? prevIndex + 1 : 0));
+    };
+
+    const dogElements = dogs ? dogs.map((dog, dogIndex) => {
         return (
-          <div key={index}>
-            <h2>{dog.petName}</h2>
-            <p>{dog.petWeight} lbs</p>
-            <p>{dog.petBreed}</p>
-            <p>{dog.petAge} years old</p>
-          </div>
-        );
+            <div>
+                <h2>{dog.petName}</h2>
+                <p>{dog.petWeight} lbs</p>
+                <p>{dog.petBreed}</p>
+                <p>{dog.petAge} years old</p>
+            </div>
+        )
     }) : null;
 
   return (
@@ -48,7 +61,11 @@ const DogHouse = () => {
         <div className='doghouse'>
             <h1 className='doghouse-header'>Dog House</h1>
             {/*Map over the Dog array from the firestore*/}
-            {dogElements}
+            <div className='doghouse-dog'>
+            <button onClick={handleLeftClick}><FontAwesomeIcon icon={faArrowLeft} /></button>
+                {dogElements[dogIndex]}
+            <button onClick={handleRightClick}><FontAwesomeIcon icon={faArrowRight} /></button>
+            </div>
         </div> 
     </div>
   )

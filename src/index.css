@@ -524,4 +524,10 @@ a{
   text-align: center;
  }
 
+.doghouse-dog{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ /* other styles... */
+}
 /*Doghouse End */
