@@ -3,6 +3,10 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Dashboard.css';
 
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+
+import useFirebaseAuthentication from '../useFirebaseAuthentication';
+
 const Dashboard = () => {
   const calendarRef = useRef(null);
   const [showForm, setShowForm] = useState(false);
@@ -12,15 +16,29 @@ const Dashboard = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [calendarEvents, setCalendarEvents] = useState([]);
 
-  // Load events from localStorage on component mount
-  useEffect(() => {
-    const savedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
-    setCalendarEvents(savedEvents);
-  }, []);
+  const db = getFirestore();
+  const currentUser = useFirebaseAuthentication();
 
-  const updateLocalStorage = (events) => {
-    localStorage.setItem('calendarEvents', JSON.stringify(events));
-  };
+
+  const getUser = async () => {
+    if (!currentUser) {
+      return;
+    }
+    const userDoc = doc(db, "users", currentUser);
+    const userSnap = await getDoc(userDoc);
+    if (userSnap.exists()) {
+      const userData = userSnap.data();
+      setCalendarEvents(userData.events);
+      calendarRef.current.getApi().refetchEvents();
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [currentUser]);
 
   const handleSelect = (info) => {
     setShowForm(true);
@@ -35,12 +53,17 @@ const Dashboard = () => {
       calendarEvents.splice(calendarEvents.indexOf(selectedEvent), 1);
       selectedEvent.remove();
       setSelectedEvent(null);
-      updateLocalStorage(calendarEvents);
     }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    //make sure no empty values
+    if (!eventTitle || !eventDate || !eventTime) {
+      alert('Please fill out all fields');
+      return;
+    }
 
     const start = new Date(`${eventDate}T${eventTime}`);
     
@@ -55,15 +78,21 @@ const Dashboard = () => {
       allDay: false,
     };
 
-    setCalendarEvents((prevEvents) => [...prevEvents, newEvent]);
-    
-    setShowForm(false);
-    setEventTitle('');
-    setEventDate('');
-    setEventTime('');
+    //add event to database
+    updateDoc(doc(db, 'users', currentUser), {
+      events: arrayUnion(newEvent)
+    });
 
-    // Update localStorage with the new events
-    updateLocalStorage([...calendarEvents, newEvent]);
+    //add event to state
+    setCalendarEvents(prevEvents => [...prevEvents, newEvent]);
+
+    console.log(calendarEvents)
+
+    //add event to calendar
+    calendarRef.current.getApi().addEvent(newEvent);
+    calendarRef.current.getApi().refetchEvents();
+
+    setShowForm(false);
   };
 
   const handleFormCancel = () => {
