@@ -33,7 +33,7 @@ const DogHouse = () => {
 
     useEffect(() => {
         getUser();
-    }, [currentUser]);
+    });
     
 
     const [dogIndex, setDogIndex] = useState(0);
