@@ -42,6 +42,11 @@ const Navbar = () => {
                    Pet Registration
                 </a>
             </div>
+            <div className="menu-item">
+                <a className="nav-link" href="/doghouse">
+                   Dog House
+                </a>
+            </div>
             <div className="button1">
                 <div className="text-container">
                   <a className="nav-link" href="/profile">

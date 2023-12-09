@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import LogInPage from './pages/LogIn';
 import PetRegistration from './pages/PetRegistration';
 import Dashboard from './pages/Dashboard';
+import DogHouse from './pages/DogHouse';
 
 import RegistrationPage from './pages/Registration';
 // import firebase
@@ -26,7 +27,7 @@ function App() {
         <Route path='/registration' element={<RegistrationPage />} />
         <Route path ='/petregistration' element={<PetRegistration />} />
         <Route path ='/profile' element={<Profile />} />
-
+        <Route path ='/doghouse' element={<DogHouse />} />
       </Routes>
     </Router>
   );
