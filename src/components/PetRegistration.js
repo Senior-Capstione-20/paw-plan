@@ -2,7 +2,11 @@ import React, { useRef, useState } from 'react';
 import './PetRegistrationSection.css';
 import axios from '../api/axios';
 
+import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 const REGISTER_PET_URL = '/register-pet';
+
 
 const PetRegistration = () => {
   const [petName, setPetName] = useState('');
@@ -15,38 +19,33 @@ const PetRegistration = () => {
   const petNameRef = useRef();
   const errorRef = useRef();
 
+  const auth = getAuth();
+  const db = getFirestore();
+
+  // get user
+  let userDoc;
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      userDoc = doc(db, "users", user.uid);
+    }
+  });
+
+
   const handlePetRegistration = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        REGISTER_PET_URL,
-        { petName, petAge, petBreed, petWeight },
-        { withCredentials: true }
-      );
+    const pet = {
+      petName: petName,
+      petAge: petAge,
+      petBreed: petBreed,
+      petWeight: petWeight,
+    };
 
-      if (response.status === 201) {
-        setSuccess(true);
-        setPetName('');
-        setPetAge('');
-        setPetBreed('');
-        setPetWeight('');
-      } else {
-        setErrorMessage('Unexpected response status');
-        errorRef.current.focus();
-      }
-    } catch (error) {
-      if (!error?.response) {
-        setErrorMessage('No server response');
-      } else if (error.response?.status === 500) {
-        setErrorMessage('Something went wrong');
-      } else if (error.response?.status === 409) {
-        setErrorMessage('Pet with this name already exists');
-      } else {
-        setErrorMessage('Glitch in the matrix occurred');
-      }
-      errorRef.current.focus();
-    }
+    // add pet to database
+    updateDoc(userDoc, {
+      dogs: arrayUnion(pet)
+    });
   };
 
   return (
