@@ -35,6 +35,13 @@ const PetRegistration = () => {
   const handlePetRegistration = async (e) => {
     e.preventDefault();
 
+    //make sure no empty values
+    if (!petName || !petAge || !petBreed || !petWeight) {
+      setErrorMessage('Please fill out all fields');
+      errorRef.current.focus();
+      return;
+    }
+
     const pet = {
       petName: petName,
       petAge: petAge,
@@ -46,87 +53,87 @@ const PetRegistration = () => {
     updateDoc(userDoc, {
       dogs: arrayUnion(pet)
     });
+
+    //success
+    setSuccess(true);
   };
 
   return (
     <div className='petregistration-wrapper'>
       <div className='PetRegistration'>
-        <b className='register-pet'>{`Register Pet `}</b>
-        <form onSubmit={handlePetRegistration}>
-          <div className='pet-registration-inner'>
-            <div className='input-group'>
-              <label htmlFor='name'>Name</label>
-              <input
-                type='text'
-                id='name'
-                className='name'
-                placeholder='Enter Name'
-                value={petName}
-                onChange={(e) => setPetName(e.target.value)}
-                required
-                ref={petNameRef}
-              />
-            </div>
+      {success ? (
+          <>
+            <b className='register-pet'>Success</b>
+            <p className='register-paragraph'>Your pet has been registered!</p>
+            <button className='register' onClick={() => setSuccess(false)}> Register Another Pet </button>
+          </>
 
-            <div className='input-group'>
-              <label htmlFor='age'>Age</label>
-              <input
-                type='text'
-                id='age'
-                className='age'
-                placeholder='Enter Age'
-                value={petAge}
-                onChange={(e) => setPetAge(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className='input-group'>
-              <label htmlFor='breed'>Breed</label>
-              <input
-                type='text'
-                id='breed'
-                className='breed'
-                placeholder='Enter Breed'
-                value={petBreed}
-                onChange={(e) => setPetBreed(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className='input-group'>
-              <label htmlFor='weight'>Weight</label>
-              <input
-                type='text'
-                id='weight'
-                className='weight'
-                placeholder='Enter Weight'
-                value={petWeight}
-                onChange={(e) => setPetWeight(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className='input-group'>
-              <button type='submit' className='register'>
-                Register Pet
-              </button>
-            </div>
-          </div>
-        </form>
-
-        {/* Display success or error message */}
-        {success ? (
-          <p>Pet registration successful!</p>
         ) : (
-          <p
-            ref={errorRef}
-            className={errorMessage ? 'errorMessage' : 'offscreen'}
-            aria-live='assertive'
-            style={{ color: '#ff0000' }}
-          >
-            {errorMessage}
-          </p>
+          <>
+            <b className='register-pet'>{`Register Pet `}</b>
+            <form onSubmit={handlePetRegistration}>
+              <div className='pet-registration-inner'>
+                <div className='input-group'>
+                  <label htmlFor='name'>Name</label>
+                  <input
+                    type='text'
+                    id='name'
+                    className='name'
+                    placeholder='Enter Name'
+                    value={petName}
+                    onChange={(e) => setPetName(e.target.value)}
+                    required
+                    ref={petNameRef}
+                  />
+                </div>
+
+                <div className='input-group'>
+                  <label htmlFor='age'>Age</label>
+                  <input
+                    type='text'
+                    id='age'
+                    className='age'
+                    placeholder='Enter Age'
+                    value={petAge}
+                    onChange={(e) => setPetAge(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className='input-group'>
+                  <label htmlFor='breed'>Breed</label>
+                  <input
+                    type='text'
+                    id='breed'
+                    className='breed'
+                    placeholder='Enter Breed'
+                    value={petBreed}
+                    onChange={(e) => setPetBreed(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className='input-group'>
+                  <label htmlFor='weight'>Weight</label>
+                  <input
+                    type='text'
+                    id='weight'
+                    className='weight'
+                    placeholder='Enter Weight'
+                    value={petWeight}
+                    onChange={(e) => setPetWeight(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className='input-group'>
+                  <button type='submit' className='register'>
+                    Register Pet
+                  </button>
+                </div>
+              </div>
+            </form>
+          </>
         )}
       </div>
     </div>

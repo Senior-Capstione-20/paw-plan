@@ -70,15 +70,19 @@
 }
 
 .register {
-  width: 150px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
+  width: 175px; /* Adjust the width as needed */
   background-color: var(--light-purple);
   color: var(--light-purple);
   margin-top: 2px;
-  font: size 20px;
   color:white;
-  font-size: 10px;
+  font-size: 25px;
   margin-bottom: 5px;
- 
+}
 
+.register-paragraph{
+  font-size: 20px;
+  margin-bottom: 150px;
+  color: white;
+  width: 80%; /* Adjust the width as needed */
+  display: block;
 }
