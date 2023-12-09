@@ -1,22 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const Navbar = () => {
-  const auth = getAuth();
-  const [user, setUser] = useState(null);
+import useFirebaseAuthentication from '../useFirebaseAuthentication';
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-  }, []);
-  
+const Navbar = () => {
+  const user = useFirebaseAuthentication();
 
   return (
-    /* TO-DO 
-        - Create clickable elements
-        - Change NavBar to react if a user is logged in
-    */
     <div className="navbar">
       <div className="left">
         <a className="paw-plan" href="/">
