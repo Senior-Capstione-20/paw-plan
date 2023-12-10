@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import './Dashboard.css';
 
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion, deleteDoc} from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
 
 import useFirebaseAuthentication from '../useFirebaseAuthentication';
 
@@ -15,6 +15,8 @@ const Dashboard = () => {
   const [eventTime, setEventTime] = useState('');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [calendarEvents, setCalendarEvents] = useState([]);
+  const [dogs, setDogs] = useState([]); 
+  const [selectedDog, setSelectedDog] = useState('');
 
   const db = getFirestore();
   const currentUser = useFirebaseAuthentication();
@@ -33,9 +35,9 @@ const Dashboard = () => {
          title: event.title,
          start: event.start.toDate(),
          allDay: event.allDay,
-         // other properties...
        }));
        setCalendarEvents(events);
+       setDogs(userData.dogs);
      } else {
        console.log("No such document!");
      }
@@ -45,10 +47,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser();
-  }, [currentUser]);
+  });
 
   const handleSelect = (info) => {
     setShowForm(true);
+    setSelectedDog(dogs[0].petName);
   };
 
   const handleEventClick = (clickInfo) => {
@@ -61,13 +64,22 @@ const Dashboard = () => {
       calendarRef.current.getApi().refetchEvents();
       //remove event from database
       const eventId = selectedEvent.id;
-      deleteDoc(doc(db, 'users', currentUser, 'events', eventId))
+      const userDocRef = doc(db, 'users', currentUser);
+      getDoc(userDocRef).then((docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const userData = docSnapshot.data();
+        const events = userData.events.filter(event => event.id !== eventId);
+        updateDoc(userDocRef, {
+        events
+        })
         .then(() => {
-          console.log("Document successfully deleted!");
+        console.log("Event successfully removed from array!");
         })
         .catch((error) => {
-          console.error("Error removing document: ", error);
+        console.error("Error removing event from array: ", error);
         });
+      }
+      });
       selectedEvent.remove();
       setSelectedEvent(null);
     }
@@ -94,7 +106,7 @@ const Dashboard = () => {
 
     // Use the event ID
     const newEvent = {
-    title: eventTitle,
+    title: selectedDog + ' - ' + eventTitle,
     start,
     allDay: false,
     id: eventId,
@@ -107,8 +119,6 @@ const Dashboard = () => {
 
     //add event to state
     setCalendarEvents(prevEvents => [...prevEvents, newEvent]);
-
-    console.log(calendarEvents)
 
     //add event to calendar
     calendarRef.current.getApi().addEvent(newEvent);
@@ -124,59 +134,78 @@ const Dashboard = () => {
     setEventTime('');
   };
 
+  // Handle dog selection
+  const handleDogSelect = (event) => {
+    setSelectedDog(event.target.value);
+  };
+
   return (
-    <div>
-      <button onClick={handleSelect}>Add Event</button>
+    <div className='calendar-container'> 
+      <div className='event-wrapper'>
+        {!showForm && (
+          <>
+            <button onClick={handleSelect}>Add Event</button>
+            <button onClick={handleDeleteEvent} disabled={!selectedEvent}> Delete Event </button>
+          </>
+        )}
 
-      {showForm && (
-        <form onSubmit={handleFormSubmit}>
-          <label>
-            Event Title:
-            <input
-              type="text"
-              value={eventTitle}
-              onChange={(e) => setEventTitle(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Event Date:
-            <input
-              type="date"
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Event Time:
-            <input
-              type="time"
-              value={eventTime}
-              onChange={(e) => setEventTime(e.target.value)}
-              required
-            />
-          </label>
-          <button type="submit">Add Event</button>
-          <button type="button" onClick={handleFormCancel}>Cancel</button>
-        </form>
-      )}
-
-      <button onClick={handleDeleteEvent} disabled={!selectedEvent}>
-        Delete Event
-      </button>
-
-      <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
-        editable={true}
-        selectable={true}
-        events={calendarEvents}
-        select={handleSelect}
-        eventClick={handleEventClick}
-        ref={calendarRef}
-      />
-    </div>
+        {showForm && (
+          <form onSubmit={handleFormSubmit}>
+              <select value={selectedDog} onChange={handleDogSelect}>
+                {dogs.map((dog, index) => (
+                  <option key={index} value={dog.petName}>{dog.petName}</option>
+                ))}
+              </select>
+            <label>
+              Event Title:
+              <input
+                type="text"
+                value={eventTitle}
+                onChange={(e) => setEventTitle(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Event Date:
+              <input
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Event Time:
+              <input
+                type="time"
+                value={eventTime}
+                onChange={(e) => setEventTime(e.target.value)}
+                required
+              />
+            </label>
+            <button type="submit">Add Event</button>
+            <button type="button" onClick={handleFormCancel}>Cancel</button>
+          </form>
+        )}
+      </div>        
+        <div className='calendar-box'>
+          <FullCalendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            editable={true}
+            selectable={true}
+            events={calendarEvents}
+            select={handleSelect}
+            eventClick={handleEventClick}
+            ref={calendarRef}
+          />
+        </div>
+        {selectedEvent && (
+          <div className='event-details'>
+            <h2>Last Selected Event Details: <span className='event'>{selectedEvent.title}, Start: {selectedEvent.start.toLocaleString()} </span></h2>
+          </div>
+        )}  
+      </div>
   );
 };
 
