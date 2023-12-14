@@ -1,10 +1,6 @@
 import React, { useRef, useState } from 'react';
-import './PetRegistrationSection.css';
-
 import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-
 
 const PetRegistration = () => {
   const [petName, setPetName] = useState('');

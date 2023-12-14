@@ -1,6 +1,4 @@
 import { useRef, useState} from 'react';
-import './RegistrationSection.css';
-
 //firebase
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";

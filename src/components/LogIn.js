@@ -1,11 +1,6 @@
 import { useRef, useState, useContext } from 'react';
-
 //firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-import './LogIn.css';
-
-
 
 const Login = () => {
 	// allow reference to variable fields from the webpage
