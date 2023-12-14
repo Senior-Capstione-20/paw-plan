@@ -1,20 +1,13 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from '../context/AuthProvider';
+import { useRef, useState, useContext } from 'react';
 
 //firebase
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import './LogIn.css';
 
-import axios from '../api/axios';
-const LOGIN_URL = '/login';
-
 
 
 const Login = () => {
-	// use auth context across app
-	const { setAuth } = useContext(AuthContext);
-
 	// allow reference to variable fields from the webpage
 	const userRef = useRef();
 	const errorRef = useRef();
