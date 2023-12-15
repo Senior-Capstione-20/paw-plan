@@ -1,12 +1,6 @@
 import React, { useRef, useState } from 'react';
-import './PetRegistrationSection.css';
-import axios from '../api/axios';
-
 import { getFirestore, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-const REGISTER_PET_URL = '/register-pet';
-
 
 const PetRegistration = () => {
   const [petName, setPetName] = useState('');

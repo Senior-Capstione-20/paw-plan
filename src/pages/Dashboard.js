@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import './Dashboard.css';
 
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion} from "firebase/firestore";
 
 import useFirebaseAuthentication from '../useFirebaseAuthentication';
 

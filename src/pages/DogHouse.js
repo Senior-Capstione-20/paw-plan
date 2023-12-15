@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged} from "firebase/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 

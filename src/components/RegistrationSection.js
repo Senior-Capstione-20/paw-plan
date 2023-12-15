@@ -1,12 +1,7 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import './RegistrationSection.css';
-
+import { useRef, useState} from 'react';
 //firebase
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-
-import axios from '../api/axios';
-const REGISTER_URL = '/register';
 
 
 const RegistrationSection = () => {
